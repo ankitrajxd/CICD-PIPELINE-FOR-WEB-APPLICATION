@@ -26,7 +26,7 @@ pipeline{
             steps{
                 script{
                     gv.Test()
-                    echo "Test by webhook"
+                    echo "Test by webhook from github"
                 }
             }
         }
