@@ -3,9 +3,13 @@ def gv
 pipeline{
     agent any
 
-    parameters{
-        choice(name: 'Version', choices: ['1.0', '1.1', '1.2', '1.3', '1.4'], description: 'Version of the application')
-    }
+
+environment {
+    TAG = '1.2'
+    PORT = '80'
+}
+
+
 
 
     stages{
