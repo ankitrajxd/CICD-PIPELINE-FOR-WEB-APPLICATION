@@ -16,7 +16,7 @@ def Test(){
 
 def Deploy(){
     echo "Deploying the application..."
-    def dockerCmd = "docker run -d -p 80:80 ankitraz/mywebsite:1.0"
+    def dockerCmd = "docker run -d -f -p 81:80 ankitraz/mywebsite:1.0"
     sshagent(['github-ssh-key']) {
         sh "ssh -o StrictHostKeyChecking=no root@206.189.140.139 ${dockerCmd}"
     }
