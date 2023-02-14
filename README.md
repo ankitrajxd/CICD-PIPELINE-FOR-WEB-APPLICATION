@@ -2,6 +2,10 @@
 
 # You can access this website at http://64.227.108.131/
 
+# Project Overview
+![A beautiful sunset](./project-diagram.png)
+
+
 ## Introduction
 
 Continuous Integration and Continuous Deployment (CI/CD) is a software development practice that involves automatically building, testing, and deploying code changes to production. This ensures that changes are integrated and deployed quickly and with high quality, reducing the risk of bugs and downtime.
