@@ -22,7 +22,7 @@ def Deploy(){
     sshagent(['github-ssh-key']) {
         //copying docker-compose.yml file to remote server
         sh "scp docker-compose.yml root@64.227.108.131:/root/new"
-        sh "ssh -o StrictHostKeyChecking=no root@64.227.108.131 ${cd} ${dockerCmd}"
+        sh "ssh -o StrictHostKeyChecking=no root@64.227.108.131 '${cd};${dockerCmd}'"
         
     }
 }
