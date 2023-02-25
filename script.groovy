@@ -18,7 +18,6 @@ def Deploy(){
     echo "Deploying the application..."
     def dockerCmd = "TAG=${env.TAG} docker-compose up -d"
     sshagent(['github-ssh-key']) {
-        sh "cd /new"
         sh "ssh -o StrictHostKeyChecking=no root@64.227.108.131 ${dockerCmd}"
     }
 }
