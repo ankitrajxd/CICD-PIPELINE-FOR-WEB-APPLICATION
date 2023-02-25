@@ -17,8 +17,12 @@ def Test(){
 def Deploy(){
     echo "Deploying the application..."
     def dockerCmd = "TAG=${env.TAG} docker-compose up -d"
+    
     sshagent(['github-ssh-key']) {
+        //copying docker-compose.yml file to remote server
+        sh "scp docker-compose.yml root@64.227.108.131:/root/new"
         sh "ssh -o StrictHostKeyChecking=no root@64.227.108.131 ${dockerCmd}"
+        
     }
 }
 
