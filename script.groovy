@@ -16,14 +16,15 @@ def Test(){
 
 def Deploy(){
     echo "Deploying the application..."
+    def serverIp = ${env.SERVER_IP}  // server ip where you want to deploy your app
     def makedir = "mkdir /root/new"  // creating a new directory on remote server
     def cd = "cd /root/new"  // changing directory to new directory on remote server where we copied docker-compose.yml file
     def dockerCmd = "TAG=${env.TAG} docker-compose up -d" // running docker-compose up command on remote server using TAG variable
     
     sshagent(['github-ssh-key']) {
         //copying docker-compose.yml file to remote server
-        sh "scp docker-compose.yml root@64.227.108.131:/root/new"  // copy docker-compose.yml file to remote server
-        sh "ssh -o StrictHostKeyChecking=no root@64.227.108.131 '${makedir};${cd};${dockerCmd}'"  // running commands on remote server
+        sh "scp docker-compose.yml root@${serverIp}:/root/new"  // copy docker-compose.yml file to remote server
+        sh "ssh -o StrictHostKeyChecking=no root@${serverIp} '${makedir};${cd};${dockerCmd}'"  // running commands on remote server, you can add more commands here seperating them with semicolon
         
     }
 }
