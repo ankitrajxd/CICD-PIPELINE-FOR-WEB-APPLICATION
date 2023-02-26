@@ -11,6 +11,6 @@
 version: "3"
 services:
   app:
-    image: ${env.REPO_NAME}:${env.TAG}
+    image: ${REPO_NAME}:${TAG}  # we need to pass tag and repo_name as env variables while running docker-compose up command
     ports:
       - "80:80"
