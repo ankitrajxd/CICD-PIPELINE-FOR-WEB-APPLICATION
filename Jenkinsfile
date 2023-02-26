@@ -7,6 +7,9 @@ pipeline{
 environment {
     TAG = '1.0.1'
     SERVER_IP = "64.227.108.131"
+    SERVER_USER = "root"
+    REPO_NAME = "ankitraz/mywebsite"
+    APP_NAME = "mywebsite"
 }
 
     stages{
