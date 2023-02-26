@@ -1,16 +1,9 @@
-# version: '3'
-# services:
-#   web:
-#     build:
-#       context: .
-#       dockerfile: Dockerfile
-#       tags:
-#         - myapp
-#     ports:
-#       - "80:80"
 version: "3"
 services:
   app:
     image: ${REPO_NAME}:${TAG}  # we need to pass tag and repo_name as env variables while running docker-compose up command
     ports:
       - "80:80"
+
+
+# this docker compose is used to pull images from docker hub and run them on production server
