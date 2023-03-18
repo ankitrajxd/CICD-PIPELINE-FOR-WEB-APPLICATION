@@ -16,7 +16,9 @@ Prerequisites
 
 1. A source code repository for your web application (e.g., GitHub, GitLab, Bitbucket)
 2. A web server to host your application (e.g., DigitalOcean Droplet, Amazon Web Services)
-3. Jenkins installed on a build agent machine
+3. We need two servers or droplets one for jenkins and one for production server in which we will deploy our application
+4. Some basic knowledge of Linux and Git
+5. Patience
 
 ## Step 1: Set up Source Code Repository
 
@@ -24,11 +26,24 @@ The first step in setting up a CI/CD pipeline is to store your source code in a 
 
 If you haven't already, create a repository for your web application in a Git-based repository management platform, such as GitHub or GitLab. Make sure to push your latest code changes to the repository.
 
-## Step 2: Install and Configure Jenkins
+```bash
+# fork this repository and clone it to your local machine
+git clone https://github.com/ankitraz/minor-project
+```
+
+## Step 2: Setup Jenkins and Docker on DigitalOcean Droplet
 
 Next, you'll need to install and configure Jenkins on a build agent machine. Jenkins is an open-source automation server that can be used to automate various parts of the software development lifecycle, including building, testing, and deploying code.
 
 To install Jenkins, follow the instructions in the Jenkins documentation for your operating system. After Jenkins is installed, you'll need to configure it to access your source code repository. This can typically be done through the Jenkins web interface.
+
+* For provisioning servers, We will use Terraform module for digital ocean. Ensure that you have terraform installed on your local machine. You can download it from [here](https://www.terraform.io/downloads.html)
+
+```bash
+# clone the repository and follow the instructions in the README
+https://github.com/ankitraz/terraform-do
+```
+
 
 ## Step 3: Create a Jenkins Job
 
@@ -37,7 +52,12 @@ A Jenkins job is a unit of work that Jenkins can perform. To create a job for ou
 1. Log in to the Jenkins web interface.
 2. Click on "New Item" in the left-hand menu.
 3. Enter a name for your job and select "Pipeline" as the type.
-4. In the "Pipeline" section, select "Pipeline script" as the definition.
+4. Enter git repository url in the "Pipeline" section and provide credentials if required.
+5. Make sure to give proper access to jenkins to retrieve the code from the repository. (use ssh authentication)
+   1. Generate ssh key inside jenkins container (use github documentation to generate keys)
+   2. copy the `public key` and add it to your github account
+   3. copy the `private key` and add it to your jenkins credentials
+
 
 ## Step 4: Automate the Pipeline
 
