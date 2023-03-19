@@ -4,6 +4,6 @@ services:
     image: ${REPO_NAME}:${TAG}  # we need to pass tag and repo_name as env variables while running docker-compose up command
     ports:
       - "80:80"
-
+    container_name: my-app
 
 # this docker compose is used to pull images from docker hub and run them on production server
