@@ -54,9 +54,24 @@ A Jenkins job is a unit of work that Jenkins can perform. To create a job for ou
 3. Enter a name for your job and select "Pipeline" as the type.
 4. Enter git repository url in the "Pipeline" section and provide credentials if required.
 5. Make sure to give proper access to jenkins to retrieve the code from the repository. (use ssh authentication)
-   1. Generate ssh key inside jenkins container (use github documentation to generate keys)
-   2. copy the `public key` and add it to your github account
-   3. copy the `private key` and add it to your jenkins credentials
+   
+   ### Jenkins steps 
+   1. Install all required plugins  - generic webhook, ssh agent
+   2. create a pipeline job
+   3. copy the repository(ssh) url and paste it inside jenkins pipeline settings
+   4. Add a new ssh key credential
+   	1. first create an ssh key inside jenkins container using `ssh-keygen -t ed25519 -C "your_email@example.com"`
+   	2. Now, add jenkins private key to `jenkins-private-key` credential
+   	3. Add jenkins public key to Your github
+   	4. Login to jenkins container as jenkins user and test the ssh connection between jenkins and github, ( this is important to add github to known_hosts manually)using `ssh -T git@github.com`
+
+   5. Now log on to deployment-server as root user and go to `.ssh` folder
+   6. Create `authorized_keys` file inside (it if not exist) and add jenkins public key there (this will allow jenkins to ssh into deployment server and run deploy stage).
+   7.  Done.
+
+   ### Credentials required to set in jenkins
+   1. jenkins_private_key
+   2.  dockerhub-id-pass
 
 
 ## Step 4: Automate the Pipeline
@@ -75,6 +90,14 @@ To set up a webhook, follow these steps:
 6. Select the events that should trigger the webhook, such as "Push".
 7. Save the webhook.
 8. With the webhook set up, the Jenkins job will run automatically whenever changes are pushed to the master branch of the repository.
+
+   ### Steps to trigger build automatically
+   1. install generic webhook plugin
+   2. go to configure option of pipelin
+   3. Under the Build Triggers menu, tick `"Generic Webhook Trigger"` and paste `"githubtoken"` (you can use any) and copy this format `http://JENKINS_URL/generic-webhook-trigger/invoke?token=YOUR_TOKEN`
+   4. now go to github repository webhook setting and add a new webhook
+   6. paste the copied url inside payload URL
+   7. Done
 
 ## Step 5: Deploy to a Web Server
 
