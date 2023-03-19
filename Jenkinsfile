@@ -7,7 +7,7 @@ pipeline{
 environment {
     TAG = '1.0.2' // tag for your image
     SERVER_IP = "64.227.108.131"  // ip of your remote server
-    SERVER_USER = "root"  // username of your remote server
+    SERVER_USER = "jenkins"  // username of your remote server
     REPO_NAME = "ankitraz/mywebsite"  // your dockerhub repo name
     APP_NAME = "mywebsite" // name of your app
 }
