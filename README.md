@@ -3,7 +3,7 @@
 # You can access this website at http://64.227.108.131/
 
 # Project Overview
-![A beautiful sunset](./project-diagram.png)
+![A beautiful sunset](./Project-files/project-diagram.png)
 
 
 ## Introduction
