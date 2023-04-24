@@ -1,6 +1,6 @@
 # Continuous Integration and Continuous Deployment (CI/CD) Pipeline for a Web Application
 
-# You can access this website at http://64.227.108.131/
+# You can access this website at http://137.184.23.94/
 
 # Project Overview
 ![A beautiful sunset](./Project-files/project-diagram.png)
